@@ -21,12 +21,12 @@ public class WorkerController {
     private final WorkerService workerService;
 
     @GetMapping()
-    public ResponseEntity<List<WorkerDTO>> findAall(){
+    public ResponseEntity<List<WorkerDTO>> findAll(){
         return ResponseEntity.ok(workerService.findAll());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<WorkerDTO> findAall(@PathVariable Long id){
+    public ResponseEntity<WorkerDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok(workerService.findByID(id));
     }
 

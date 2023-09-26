@@ -1,4 +1,4 @@
-package mslearning.hrpayroll.model;
+package mslearning.hrpayroll.dto;
 
 import lombok.*;
 
@@ -7,12 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class WorkerModel {
-
-    private Long id;
-
+public class WorkerDTO {
     private String name;
-
     private Double dailyIncome;
-
 }
