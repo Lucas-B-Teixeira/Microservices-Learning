@@ -1,17 +1,16 @@
 package mslearning.hrpayroll.feignClients;
 
+import mslearning.hrpayroll.config.AppConfig;
 import mslearning.hrpayroll.dto.WorkerDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@Component
-@FeignClient(name = "hr-worker", url = "localhost:8001", path = "/workers")
+@FeignClient(name = "hr-worker", path = "/workers", configuration = AppConfig.class)
 public interface WorkerFeignClient {
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<WorkerDTO> findById(@PathVariable Long id);
+    ResponseEntity<WorkerDTO> findById(@PathVariable Long id);
 
 }

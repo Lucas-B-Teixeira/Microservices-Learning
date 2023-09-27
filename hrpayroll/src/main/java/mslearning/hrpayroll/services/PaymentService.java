@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import mslearning.hrpayroll.dto.WorkerDTO;
 import mslearning.hrpayroll.feignClients.WorkerFeignClient;
 import mslearning.hrpayroll.model.PaymentModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
