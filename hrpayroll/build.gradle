@@ -23,9 +23,14 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.0.4'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon:2.2.10.RELEASE'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.2'
+
+	implementation 'io.github.resilience4j:resilience4j-spring-boot2:2.1.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
