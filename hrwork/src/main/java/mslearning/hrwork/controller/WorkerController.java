@@ -1,12 +1,12 @@
 package mslearning.hrwork.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mslearning.hrwork.dto.WorkerDTO;
-import mslearning.hrwork.model.WorkerModel;
-import mslearning.hrwork.repository.WorkerRepository;
 import mslearning.hrwork.service.WorkerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,14 +18,23 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/workers")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class WorkerController {
+
+    private static Logger logger = LoggerFactory.getLogger(WorkerController.class);
+
+    @Value("${test.config}")
+    private String TEST_CONFIG;
 
     private final WorkerService workerService;
 
     private final Environment env;
 
-    private static Logger logger = LoggerFactory.getLogger(WorkerController.class);
+    @GetMapping(value = "/configs")
+    public ResponseEntity<Void> getConfigs(){
+        logger.info("CONFIG " + TEST_CONFIG);
+        return ResponseEntity.noContent().build();
+    }
 
     @GetMapping()
     public ResponseEntity<List<WorkerDTO>> findAll(){
