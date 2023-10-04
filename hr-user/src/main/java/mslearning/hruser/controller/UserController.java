@@ -19,9 +19,9 @@ public class UserController {
         return ResponseEntity.ok(userModel);
     }
 
-    @GetMapping(value = "/search")
-    public ResponseEntity<UserModel> findByEmail(@RequestParam String email){
-        UserModel userModel = userRepository.findByEmail(email);
+    @GetMapping(value = "/search/{username}")
+    public ResponseEntity<UserModel> findByEmail(@PathVariable String username){
+        UserModel userModel = userRepository.findByEmail(username);
         return ResponseEntity.ok(userModel);
     }
 

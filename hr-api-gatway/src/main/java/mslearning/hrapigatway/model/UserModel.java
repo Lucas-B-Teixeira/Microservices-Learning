@@ -1,4 +1,4 @@
-package mslearning.hroauth.model;
+package mslearning.hrapigatway.model;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Builder
 public class UserModel implements UserDetails {
 
-    private Long id;
+    private String id;
 
     private String name;
 

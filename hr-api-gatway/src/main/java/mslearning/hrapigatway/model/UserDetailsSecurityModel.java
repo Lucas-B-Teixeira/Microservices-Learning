@@ -1,4 +1,4 @@
-package mslearning.hroauth.model;
+package mslearning.hrapigatway.model;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,27 +15,22 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserModel implements UserDetails {
+public class UserDetailsSecurityModel implements UserDetails {
 
-    private Long id;
-
-    private String name;
-
-    private String email;
-
+    private String id;
+    private String userName;
     private String password;
-
-    @Builder.Default
-    Set<RoleModel> roles = new HashSet<>();
+    private Set<RoleModel> roles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream().map(x -> new SimpleGrantedAuthority(x.getRoleName())).collect(Collectors.toList());
+        return roles.stream().map(x -> new SimpleGrantedAuthority(x.getRoleName()))
+                .collect(Collectors.toList());
     }
 
     @Override
     public String getUsername() {
-        return email;
+        return userName;
     }
 
     @Override
