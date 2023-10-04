@@ -1,11 +1,14 @@
 package mslearning.hrapigatway.config;
 
+import jakarta.servlet.FilterRegistration;
 import lombok.RequiredArgsConstructor;
 import mslearning.hrapigatway.security.GatewayTokenFilter;
 import mslearning.hrapigatway.service.JwtUtil;
 import mslearning.hrapigatway.service.UserDetailsSecurityService;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.http.HttpMethod;
 
 
@@ -17,6 +20,12 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebFluxSecurity
@@ -35,7 +44,11 @@ public class SecurityConfig {
     };
 
     private static final String[] ADMIN = {
-            "/hr-payroll/**"
+            "/hr-payroll/**",
+            "/hr-user/**",
+            "/actuator/**",
+            "/hr-worker/actuator/**",
+            "/hr-oauth/actuator/**",
     };
 
     @Bean
@@ -67,5 +80,21 @@ public class SecurityConfig {
             .addFilterAt(new GatewayTokenFilter(jwtUtil, userDetailsSecurityService), SecurityWebFiltersOrder.AUTHENTICATION)
             .build();
     }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.applyPermitDefaultValues();
+        configuration.setAllowedOrigins(Arrays.asList("*")); //aceitar todos os host
+        configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE"));
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
+
 
 }
