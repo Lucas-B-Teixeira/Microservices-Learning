@@ -31,3 +31,6 @@ Este repositório foi criado com o intuito de ajudar na compreensão dos conceit
 Fique à vontade para explorar, estudar e, se necessário, adaptar os conceitos deste projeto para suas próprias necessidades. Lembre-se de que este é um recurso didático e pode não ser adequado para ambientes de produção.
 
 Esperamos que este repositório seja útil para o seu aprendizado e desenvolvimento de habilidades em microserviços.
+
+![image](https://github.com/Lucas-B-Teixeira/Microservices-Learning/assets/122762806/7779b408-ccb2-4a98-8df7-62e3ca907d83)
+
